@@ -1,0 +1,698 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+
+:root {
+  --green: #35f58b;
+  --green-bright: #62ffa6;
+  --green-dim: #159c59;
+  --green-dark: #052d1b;
+  --black: #020605;
+  --panel: rgba(3, 18, 11, .88);
+  --line: rgba(53, 245, 139, .58);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: #000;
+  color: var(--green);
+  font-family: "Share Tech Mono", "Courier New", monospace;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .18;
+  background:
+    linear-gradient(rgba(53,245,139,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(53,245,139,.025) 1px, transparent 1px);
+  background-size: 4px 4px, 80px 80px;
+}
+
+.phone {
+  position: relative;
+  width: min(100vw, 390px);
+  min-height: 100vh;
+  padding: 8px 10px 20px;
+  background:
+    radial-gradient(circle at 75% 35%, rgba(37, 155, 83, .13), transparent 28%),
+    linear-gradient(180deg, #03130b 0%, #020805 100%);
+  border: 1px solid rgba(53,245,139,.7);
+  box-shadow:
+    0 0 35px rgba(25, 245, 125, .16),
+    inset 0 0 55px rgba(0,255,110,.06);
+  overflow: hidden;
+}
+
+@media (min-width: 500px) {
+  .phone {
+    min-height: 844px;
+    max-height: 95vh;
+    border-radius: 22px;
+    overflow-y: auto;
+  }
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  opacity: .08;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(110,255,170,.7) 3px
+  );
+  mix-blend-mode: screen;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: inset 0 0 18px rgba(0,255,110,.035);
+}
+
+.topbar {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 3px;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(53,245,139,.35);
+}
+
+.signal { display: flex; gap: 7px; }
+.blocks { letter-spacing: 2px; }
+.status-icons { letter-spacing: 5px; }
+
+.calendar {
+  margin-top: 4px;
+  border-top: 0;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  min-height: 47px;
+}
+
+.days button {
+  border: 0;
+  border-right: 1px solid rgba(53,245,139,.12);
+  background: transparent;
+  color: rgba(53,245,139,.45);
+  font: inherit;
+  font-size: 10px;
+  padding: 7px 0 3px;
+  cursor: pointer;
+}
+
+.days button small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: inherit;
+}
+
+.days button.active {
+  color: var(--green-bright);
+  text-shadow: 0 0 7px var(--green);
+}
+
+.date-strip {
+  height: 23px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: var(--green);
+  color: #02140b;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.clock-panel {
+  margin-top: 6px;
+  padding: 5px 9px 10px;
+  border-top: 0;
+}
+
+.clock-row {
+  display: grid;
+  grid-template-columns: 1fr 72px;
+  align-items: end;
+  min-height: 69px;
+}
+
+.time-display {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+}
+
+.clock {
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 60px;
+  line-height: .8;
+  letter-spacing: -2px;
+  text-shadow: 0 0 7px rgba(53,245,139,.65);
+}
+
+.seconds {
+  font-family: "VT323", monospace;
+  font-size: 34px;
+  opacity: .9;
+  text-shadow: 0 0 7px rgba(53,245,139,.5);
+}
+
+.alarm {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: 9px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.alarm span { opacity: .65; }
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.weather-map {
+  height: 75px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(53,245,139,.32);
+  background:
+    radial-gradient(circle at 45% 52%, rgba(53,245,139,.12), transparent 28%),
+    linear-gradient(135deg, transparent 48%, rgba(53,245,139,.11) 49%, transparent 50%);
+}
+
+.map-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(53,245,139,.12) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(53,245,139,.12) 50%, transparent 51%);
+  background-size: 15px 15px;
+  transform: rotate(14deg) scale(1.4);
+}
+
+.radar {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 48%;
+  top: 43%;
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 9px var(--green);
+}
+
+.weather-info {
+  font-size: 10px;
+  line-height: 1.65;
+  padding-top: 2px;
+}
+
+.charge {
+  margin-top: 6px;
+  padding: 6px 7px 7px;
+}
+
+.charge-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.charge-title b { font-weight: normal; }
+.battery-bar {
+  height: 18px;
+  border: 1px solid var(--green-dim);
+  position: relative;
+  overflow: hidden;
+}
+.battery-fill {
+  height: 100%;
+  width: 87%;
+  background: rgba(53,245,139,.28);
+  border-right: 1px solid var(--green);
+}
+.battery-lines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(53,245,139,.5) 0 3px, transparent 3px 6px);
+  opacity: .55;
+}
+
+
+.notifications {
+  margin-top: 6px;
+  padding: 0 8px 8px;
+}
+
+.section-title {
+  margin: 0 -8px 7px;
+  height: 23px;
+  padding: 0 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--green);
+  color: #02140b;
+  font-size: 11px;
+}
+
+.notification-card {
+  display: grid;
+  grid-template-columns: 73px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.thumb {
+  height: 55px;
+  border: 1px solid var(--green-dim);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(53,245,139,.1), transparent);
+  font-size: 27px;
+}
+
+.notification-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 10px;
+}
+.notification-copy strong { font-weight: normal; }
+.notification-copy span { opacity: .6; }
+
+.dock {
+  margin-top: 7px;
+  min-height: 37px;
+  border: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: rgba(2, 12, 7, .92);
+}
+
+.dock button { font-size: 17px; }
+
+
+/* INTERFACE AMPLIADA */
+.phone {
+  width: min(100vw, 520px);
+  min-height: 100vh;
+  padding: 12px 14px 28px;
+}
+@media (min-width: 700px) {
+  .phone { width: 520px; min-height: 900px; max-height: 96vh; border-radius: 24px; }
+}
+.topbar { height: 32px; padding: 0 10px 4px; font-size: 14px; }
+.days { min-height: 58px; }
+.days button { font-size: 12px; }
+.days button small { font-size: 13px; margin-top: 5px; }
+.date-strip { height: 29px; padding: 0 12px; font-size: 13px; }
+.clock-panel { padding: 8px 12px 13px; }
+.clock-row { min-height: 88px; }
+.clock { font-size: 76px; }
+.seconds { font-size: 33px; }
+.alarm { font-size: 11px; margin-bottom: 11px; }
+.weather-grid { grid-template-columns: 115px 1fr; gap: 13px; }
+.weather-map { height: 94px; }
+.weather-info { font-size: 12px; line-height: 1.75; }
+.charge { padding: 8px 10px 9px; }
+.charge-title { font-size: 12px; }
+.battery-bar { height: 22px; }
+.notifications { padding: 0 10px 11px; }
+.section-title { height: 29px; margin: 0 -10px 9px; padding: 0 11px; font-size: 13px; }
+.notification-card { grid-template-columns: 92px 1fr; gap: 13px; }
+.thumb { height: 70px; font-size: 32px; }
+.notification-copy { font-size: 12px; gap: 8px; }
+
+.dock {
+  margin-top: 10px;
+  min-height: 92px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.dock-item {
+  position: relative;
+  min-height: 90px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: transparent !important;
+  color: var(--green) !important;
+  border: 0;
+  border-right: 1px solid rgba(53,245,139,.22) !important;
+  font: inherit;
+  font-size: 11px !important;
+  line-height: 1.15;
+  letter-spacing: .4px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.dock-item:hover {
+  background: rgba(53,245,139,.045) !important;
+  color: var(--green-bright) !important;
+}
+.dock-item:last-child { border-right: 0 !important; }
+.dock-icon { font-size: 29px; line-height: 1; }
+.dock-item.active {
+  background: rgba(53,245,139,.08);
+  box-shadow: inset 0 -3px 0 var(--green);
+  color: var(--green-bright);
+  text-shadow: 0 0 9px var(--green);
+}
+.dock-item.active::before {
+  content: "●";
+  position: absolute;
+  top: 7px;
+  font-size: 7px;
+  animation: blink 1.2s infinite;
+}
+.section-status {
+  margin-top: 7px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  min-height: 29px;
+}
+.section-status .status-label { opacity: .5; }
+.section-status #currentSection { color: var(--green-bright); }
+@keyframes blink { 0%,45% {opacity:1} 46%,100% {opacity:.15} }
+
+.location-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.location-row label { white-space: nowrap; }
+#citySelect {
+  min-width: 0;
+  max-width: 100%;
+  flex: 1;
+  background: #020c07;
+  color: var(--green);
+  border: 1px solid var(--green-dim);
+  font: inherit;
+  font-size: inherit;
+  padding: 1px 3px;
+  outline: none;
+  color-scheme: dark;
+}
+#citySelect:focus {
+  border-color: var(--green-bright);
+  box-shadow: 0 0 7px rgba(53,245,139,.3);
+}
+
+/* VISTAS INTERNAS */
+.app-view {
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  background: rgba(2, 12, 7, .94);
+  min-height: 520px;
+  padding: 10px;
+  box-shadow: inset 0 0 22px rgba(0,255,110,.035);
+}
+
+.view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid rgba(53,245,139,.28);
+  padding-bottom: 9px;
+  margin-bottom: 10px;
+}
+
+.view-kicker {
+  color: var(--green-dim);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.view-title {
+  margin: 2px 0 0;
+  font-family: "VT323", monospace;
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.back-button,
+.action-button {
+  border: 1px solid var(--green-dim);
+  background: rgba(53,245,139,.045);
+  color: var(--green);
+  font: inherit;
+  font-size: 10px;
+  padding: 7px 9px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.back-button:hover,
+.action-button:hover {
+  background: rgba(53,245,139,.11);
+  border-color: var(--green-bright);
+  color: var(--green-bright);
+}
+
+.data-card,
+.mission-card,
+.file-card,
+.empty-state {
+  border: 1px solid rgba(53,245,139,.32);
+  background: rgba(3,18,11,.72);
+}
+
+.mission-list,
+.file-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.mission-card,
+.file-card {
+  width: 100%;
+  color: var(--green);
+  font: inherit;
+  text-align: left;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.mission-card:hover,
+.file-card:hover {
+  border-color: var(--green);
+  background: rgba(53,245,139,.07);
+  box-shadow: inset 3px 0 0 var(--green);
+}
+
+.card-code {
+  display: block;
+  color: var(--green-dim);
+  font-size: 9px;
+  margin-bottom: 5px;
+}
+
+.card-title {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: rgba(53,245,139,.58);
+  font-size: 9px;
+}
+
+.briefing-block {
+  border-left: 2px solid var(--green);
+  padding: 8px 10px;
+  margin-bottom: 9px;
+  background: rgba(53,245,139,.025);
+}
+
+.briefing-label {
+  color: var(--green-dim);
+  font-size: 9px;
+  margin-bottom: 5px;
+}
+
+.briefing-text {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.55;
+  color: rgba(53,245,139,.88);
+}
+
+.objectives {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.objectives li {
+  position: relative;
+  padding: 7px 8px 7px 25px;
+  border-top: 1px solid rgba(53,245,139,.14);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.objectives li::before {
+  content: "[ ]";
+  position: absolute;
+  left: 0;
+  color: var(--green-bright);
+}
+
+.file-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.file-card {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.file-photo {
+  height: 88px;
+  border: 1px solid rgba(53,245,139,.34);
+  margin-bottom: 8px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 37%, rgba(53,245,139,.28) 0 17%, transparent 18%),
+    radial-gradient(ellipse at 50% 92%, rgba(53,245,139,.22) 0 31%, transparent 32%),
+    linear-gradient(180deg, rgba(53,245,139,.05), rgba(0,0,0,.2));
+  position: relative;
+}
+
+.file-photo::after {
+  content: "ARQUIVO VISUAL";
+  position: absolute;
+  bottom: 4px;
+  right: 5px;
+  font-size: 7px;
+  color: rgba(53,245,139,.5);
+}
+
+.photo-mark {
+  font-family: "VT323", monospace;
+  font-size: 34px;
+  opacity: .8;
+  text-shadow: 0 0 8px var(--green);
+}
+
+.dossier-head {
+  margin-bottom: 10px;
+}
+
+.dossier-panel-image {
+  width: 100%;
+  margin: 0 0 12px;
+  border: 1px solid rgba(53,245,139,.38);
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+
+.dossier-panel-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.file-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.dossier-info {
+  border: 1px solid rgba(53,245,139,.32);
+  padding: 9px;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.dossier-name {
+  font-family: "VT323", monospace;
+  font-size: 25px;
+  margin-bottom: 4px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 85px 1fr;
+  border-top: 1px solid rgba(53,245,139,.12);
+  padding: 4px 0;
+}
+
+.info-row strong {
+  color: var(--green-dim);
+  font-weight: normal;
+}
+
+.empty-state {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 30px;
+  color: rgba(53,245,139,.58);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.empty-state .empty-symbol {
+  display: block;
+  font-family: "VT323", monospace;
+  font-size: 46px;
+  color: var(--green-dim);
+  margin-bottom: 7px;
+}
+
+@media (max-width: 430px) {
+  .dossier-panel-image { margin-bottom: 9px; }
+  .dossier-panel-image img { max-height: 62vh; }
+  .info-row { grid-template-columns: 70px 1fr; }
+}

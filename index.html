@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Green Terminal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="phone">
+    <div class="noise"></div>
+
+    <header class="topbar">
+      <div class="datapad">DATAPAD</div>
+      <div class="navi-title">N.A.V.I.</div>
+      <div class="status-icons">◔ ◇</div>
+    </header>
+
+    <section class="calendar panel">
+      <div class="days">
+        <button>MON<small>21</small></button>
+        <button>TUE<small>22</small></button>
+        <button>WED<small>23</small></button>
+        <button>THU<small>24</small></button>
+        <button class="active">FRI<small>25</small></button>
+        <button>SAT<small>26</small></button>
+        <button>SUN<small>27</small></button>
+      </div>
+      <div class="date-strip">SEX 12:00 DIA DE NATAL</div>
+    </section>
+
+    <section class="clock-panel panel">
+      <div class="clock-row">
+        <div class="time-display">
+          <div id="clock" class="clock">06:39</div><span id="seconds" class="seconds">40</span>
+        </div>
+        <div class="alarm">
+          <strong>ALARME</strong>
+          <span>NÃO DEFINIDO</span>
+        </div>
+      </div>
+
+      <div class="weather-grid">
+        <div class="weather-map">
+          <div class="map-grid"></div>
+          <div class="radar"></div>
+        </div>
+        <div class="weather-info">
+          <div class="location-row">
+            <label for="citySelect">LOC -</label>
+            <select id="citySelect" aria-label="Selecionar cidade brasileira"></select>
+          </div>
+          <div id="weatherStatus">CARREGANDO CLIMA...</div>
+          <div id="weatherTemp">TEMP - --°C</div>
+          <div id="weatherCondition">CON - --</div>
+          <div id="weatherHumidity">UMI - --%</div>
+          <div id="weatherRange">MÁX --°C - MÍN --°C</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="charge panel">
+      <div class="charge-title">
+        <span>CARGA <b>EM 1 HORA</b></span>
+        <span id="batteryText">87%</span>
+      </div>
+      <div class="battery-bar">
+        <div class="battery-fill" id="batteryFill"></div>
+        <div class="battery-lines"></div>
+      </div>
+    </section>
+<section class="notifications panel">
+      <div class="section-title">
+        <span>NOTIFICAÇÕES</span>
+        <b id="notificationCount">2</b>
+      </div>
+      <div class="notification-card">
+        <div class="thumb">
+          <span>▦</span>
+        </div>
+        <div class="notification-copy">
+          <strong>HISHOOT_20021225_183133.PNG</strong>
+          <span>TOQUE PARA VER</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="appView" class="app-view" hidden></section>
+
+    <nav class="dock">
+      <button class="dock-item active" title="Missões" data-section="missions">
+        <span class="dock-icon">⌁</span>
+        <span>MISSÕES</span>
+      </button>
+      <button class="dock-item" title="Arquivos Confidenciais" data-section="files">
+        <span class="dock-icon">▤</span>
+        <span>ARQUIVOS<br>CONFIDENCIAIS</span>
+      </button>
+      <button class="dock-item" title="Contatos" data-section="contacts">
+        <span class="dock-icon">◎</span>
+        <span>CONTATOS</span>
+      </button>
+    </nav>
+
+    <section class="section-status panel">
+      <div class="status-label">SEÇÃO ATUAL</div>
+      <div id="currentSection">MISSÕES</div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
