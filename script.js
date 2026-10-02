@@ -4,17 +4,54 @@ const batteryFill = document.getElementById("batteryFill");
 const batteryText = document.getElementById("batteryText");
 const notificationCount = document.getElementById("notificationCount");
 
-function updateClock() {
+const calendarDays = document.getElementById("calendarDays");
+const dateStrip = document.getElementById("dateStrip");
+
+const dayLabels = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const dayLabelsPt = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
+
+function updateDateTime() {
   const now = new Date();
+
   clock.textContent = now.toLocaleTimeString("pt-BR", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
   });
   seconds.textContent = String(now.getSeconds()).padStart(2, "0");
+
+  // Mostra a semana atual (segunda a domingo) e destaca o dia de hoje.
+  const today = new Date(now);
+  const monday = new Date(today);
+  const day = monday.getDay();
+  const daysFromMonday = day === 0 ? 6 : day - 1;
+  monday.setDate(monday.getDate() - daysFromMonday);
+
+  calendarDays.innerHTML = "";
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(monday);
+    date.setDate(monday.getDate() + i);
+
+    const button = document.createElement("button");
+    if (date.toDateString() === today.toDateString()) {
+      button.classList.add("active");
+    }
+
+    button.innerHTML = `${dayLabels[date.getDay()]}<small>${date.getDate()}</small>`;
+    calendarDays.appendChild(button);
+  }
+
+  const dayPt = dayLabelsPt[now.getDay()];
+  const time = now.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  dateStrip.textContent = `${dayPt} ${time}`;
 }
-updateClock();
-setInterval(updateClock, 1000);
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
 
 // Cidades brasileiras. A busca da API encontra também outras cidades do Brasil.
 const cities = [
