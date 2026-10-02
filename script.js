@@ -286,8 +286,8 @@ const files = [
     alias: "R.",
     name: "SUJEITO 026",
     affiliate: "CASA DE SANTA CECÍLIA",
-    profile: "?",
-    dossier: "?",
+    profile: "3674",
+    dossier: "3674",
     image: "assets/painel-r.png",
   },
   {
