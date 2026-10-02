@@ -292,6 +292,17 @@ const files = [
       "O operador demonstra tendência a priorizar decisões baseadas na utilidade operacional e na preservação dos recursos considerados relevantes para o cumprimento da missão. Em situações de escolha crítica, apresenta disposição para sacrificar indivíduos considerados menos úteis à operação em favor daqueles com maior capacidade de contribuição.",
     image: "assets/painel-t3mpus.png",
   },
+  {
+    id: "OP-042",
+    alias: "M.C.",
+    name: "SUJEITO 042",
+    affiliate: "AGÊNCIA",
+    profile:
+      "O relato apresenta uma operadora de comportamento gentil e colaborativo, com forte curiosidade intelectual e tendência a apresentar soluções e ideias pouco convencionais. Demonstra dedicação significativa às investigações, buscando compreender os casos de maneira abrangente.",
+    dossier:
+      "Apresenta interesse acentuado por recursos tecnológicos, investigação e análise de casos, demonstrando tendência a aprofundar-se extensivamente nas informações disponíveis antes de formular conclusões.",
+    image: "assets/painel-mc.png",
+  },
 ];
 
 function renderMissionList() {
