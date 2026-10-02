@@ -282,6 +282,15 @@ const files = [
     image: "assets/painel-vcent.png",
   },
   {
+    id: "OP-026",
+    alias: "R.",
+    name: "SUJEITO 026",
+    affiliate: "CASA DE SANTA CECÍLIA",
+    profile: "?",
+    dossier: "?",
+    image: "assets/painel-r.png",
+  },
+  {
     id: "OP-031",
     alias: "T3MPUS",
     name: "SUJEITO 031",
