@@ -249,9 +249,9 @@ const missions = [
   },
   {
     code: "MIS-002",
-    title: "ARQUIVO: PONTO CEGO",
+    title: "ARQUIVO: LÂMINA",
     status: "AGUARDANDO",
-    location: "SETOR 07",
+    location: "AURORA — RS",
     briefing:
       "A Agência recebeu um alerta referente a uma ocorrência paranormal em uma residência localizada em uma área residencial do estado de São Paulo. Uma equipe de reconhecimento foi enviada ao local após a identificação de uma alteração considerada de baixo risco pelo N.A.V.I.. A análise preliminar indicava uma região classificada como N1, com a membrana aparentemente intacta e sem registros de manifestações de grande intensidade. A situação, entretanto, evoluiu de maneira incompatível com a classificação inicial. Uma comunicação interna registrada posteriormente ao incidente relata a presença de cinco a seis vítimas fatais no interior da residência. Entre elas encontram-se membros da própria Agência. O local permanece isolado. A equipe enviada deverá realizar uma varredura completa do local, levantando informações sobre:",
     objectives: ["."],
