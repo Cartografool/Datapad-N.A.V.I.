@@ -20,7 +20,6 @@ function updateDateTime() {
   });
   seconds.textContent = String(now.getSeconds()).padStart(2, "0");
 
-  // Mostra a semana atual (segunda a domingo) e destaca o dia de hoje.
   const today = new Date(now);
   const monday = new Date(today);
   const day = monday.getDay();
@@ -53,7 +52,6 @@ function updateDateTime() {
 updateDateTime();
 setInterval(updateDateTime, 1000);
 
-// Cidades brasileiras. A busca da API encontra também outras cidades do Brasil.
 const cities = [
   ["São Paulo", -23.5505, -46.6333],
   ["Rio de Janeiro", -22.9068, -43.1729],
@@ -159,7 +157,6 @@ citySelect.addEventListener("change", () => {
 });
 
 loadWeather();
-// Atualiza o clima periodicamente para manter a temperatura atualizada.
 setInterval(loadWeather, 10 * 60 * 1000);
 
 let selectedDay = 4;
@@ -212,7 +209,6 @@ function setSection(section) {
   });
   currentSection.textContent = sectionNames[section];
 
-  // A navegação inferior passa a funcionar como uma tela interna.
   originalDashboard.forEach((el) => (el.hidden = true));
   appView.hidden = false;
 
@@ -441,5 +437,4 @@ document.querySelectorAll(".dock-item").forEach((item) => {
   item.addEventListener("click", () => setSection(item.dataset.section));
 });
 
-// A tela inicial continua sendo exibida ao carregar o terminal.
 showDashboard();
